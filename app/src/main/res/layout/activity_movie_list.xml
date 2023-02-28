@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movielist"
+            type="com.ramesh.movie.mvvm.data.local.model.MovieList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.main.view.MovieListActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintStart_toEndOf="@id/guide_line_left"
+            app:layout_constraintTop_toTopOf="@id/guide_line_top"
+            app:srcCompat="@drawable/ic_sort" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_movie_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movies"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:typeface="sans"
+            app:layout_constraintEnd_toStartOf="@id/guide_line_right"
+            app:layout_constraintStart_toEndOf="@id/guide_line_left"
+            app:layout_constraintTop_toTopOf="@id/guide_line_top" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toStartOf="@id/guide_line_right"
+            app:layout_constraintTop_toTopOf="@id/guide_line_top"
+            app:srcCompat="@drawable/ic_search" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="48dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@id/guide_line_right"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/guide_line_left"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_tittle" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_movie_tittle2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@{movielist.moviename}"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="@id/recyclerView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/recyclerView"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_movie_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Fantacy / Mistery - 2hours"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="@id/recyclerView"
+            app:layout_constraintStart_toStartOf="@id/recyclerView"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_tittle2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_movie_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@{movielist.movierate}"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/tv_movie_vote"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/guide_line_left"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_type" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="Star rate"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@id/tv_movie_rate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/tv_movie_rate"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_rate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_movie_vote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{movielist.moviecount}"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/tv_movie_popular"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_movie_rate"
+            app:layout_constraintTop_toTopOf="@id/tv_movie_rate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="Vote count"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@id/tv_movie_vote"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/tv_movie_vote"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_vote" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_movie_popular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{movielist.moviepopularity}"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@id/guide_line_right"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_movie_vote"
+            app:layout_constraintTop_toTopOf="@id/tv_movie_vote" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Popularity"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@id/tv_movie_popular"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/tv_movie_popular"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_popular" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_view_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toTopOf="@id/guide_line_bottom"
+            app:layout_constraintEnd_toEndOf="@id/guide_line_right"
+            app:layout_constraintStart_toEndOf="@id/guide_line_left"
+            app:layout_constraintStart_toStartOf="@id/guide_line_left"
+            app:srcCompat="@drawable/ic_arrow_down" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
